@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wlxy.hair.dao.TOrderDao">
+	<!-- 动态条件查询t_order -->
+	<select id="getAllTOrder" parameterType="TOrder" resultType="TOrder">SELECT * FROM t_order
+		<where>
+			<if test=" id !=null and id !='' ">and id=#{id}</if>
+			<!-- 预约用户id -->
+			<if test=" userId !=null and userId !='' ">and userid=#{userId}</if>
+			<!-- 预约用户名字 -->
+			<if test=" userName !=null and userName !='' ">and username=#{userName}</if>
+			<!-- 理发店名字 -->
+			<if test=" storeName !=null and storeName !='' ">and storename=#{storeName}</if>
+			<!-- 理发店照片 -->
+			<if test=" storePic !=null and storePic !='' ">and storepic=#{storePic}</if>
+			<!-- 订单状态 -->
+			<if test=" orderStatus !=null and orderStatus !='' ">and orderstatus=#{orderStatus}</if>
+			<!-- 订单创建时间 -->
+			<if test=" createTime !=null and createTime !='' ">and createtime=#{createTime}</if>
+			<!-- 订单完成时间 -->
+			<if test=" orderTime !=null and orderTime !='' ">and ordertime=#{orderTime}</if>
+			<!-- 订单價格 -->
+			<if test=" price !=null and price !='' ">and price=#{price}</if>
+		</where>
+	</select>
+	<!-- 动态保存t_order -->
+	<insert parameterType="TOrder" id="addTOrder">INSERT INTO t_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<!-- 预约用户id -->
+			<if test=" userId !=null and userId !='' ">userId,</if>
+			<!-- 预约用户名字 -->
+			<if test=" userName !=null and userName !='' ">userName,</if>
+			<!-- 理发店名字 -->
+			<if test=" storeName !=null and storeName !='' ">storeName,</if>
+			<!-- 理发店照片 -->
+			<if test=" storePic !=null and storePic !='' ">storePic,</if>
+			<!-- 订单状态 -->
+			<if test=" orderStatus !=null and orderStatus !='' ">orderStatus,</if>
+			<!-- 订单创建时间 -->
+			<if test=" createTime !=null">createTime,</if>
+			<!-- 订单完成时间 -->
+			<if test=" orderTime !=null and orderTime !='' ">orderTime,</if>
+			<!-- 订单價格 -->
+			<if test=" price !=null and price !='' ">price,</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<!-- 预约用户id -->
+			<if test=" userId !=null and userId !='' ">#{userId},</if>
+			<!-- 预约用户名字 -->
+			<if test=" userName !=null and userName !='' ">#{userName},</if>
+			<!-- 理发店名字 -->
+			<if test=" storeName !=null and storeName !='' ">#{storeName},</if>
+			<!-- 理发店照片 -->
+			<if test=" storePic !=null and storePic !='' ">#{storePic},</if>
+			<!-- 订单状态 -->
+			<if test=" orderStatus !=null and orderStatus !='' ">#{orderStatus},</if>
+			<!-- 订单创建时间 -->
+			<if test=" createTime !=null">#{createTime},</if>
+			<!-- 订单完成时间 -->
+			<if test=" orderTime !=null and orderTime !='' ">#{orderTime},</if>
+			<!-- 订单價格 -->
+			<if test=" price !=null and price !='' ">#{price}</if>
+		</trim>
+		<selectKey resultType="int" keyProperty="id" order="AFTER">select LAST_INSERT_ID()</selectKey>
+	</insert>
+
+	<!-- 动态更新t_order -->
+	<update id="updateTOrder" parameterType="TOrder">update t_order set
+		<trim suffixOverrides=",">
+			<!-- 预约用户id -->
+			<if test=" userId !=null and userId !='' ">userid=#{userId},</if>
+			<!-- 预约用户名字 -->
+			<if test=" userName !=null and userName !='' ">username=#{userName},</if>
+			<!-- 理发店名字 -->
+			<if test=" storeName !=null and storeName !='' ">storename=#{storeName},</if>
+			<!-- 理发店照片 -->
+			<if test=" storePic !=null and storePic !='' ">storepic=#{storePic},</if>
+			<!-- 订单状态 -->
+			<if test=" orderStatus !=null and orderStatus !='' ">orderstatus=#{orderStatus},</if>
+			<!-- 订单创建时间 -->
+			<if test=" createTime !=null and createTime !='' ">createtime=#{createTime},</if>
+			<!-- 订单完成时间 -->
+			<if test=" orderTime !=null and orderTime !='' ">ordertime=#{orderTime},</if>
+			<!-- 订单價格 -->
+			<if test=" price !=null and price !='' ">price=#{price}</if>
+		</trim> WHERE id = #{id}
+	</update>
+</mapper>

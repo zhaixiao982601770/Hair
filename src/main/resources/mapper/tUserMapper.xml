@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wlxy.hair.dao.TUserDao">
+	<!-- 动态条件查询t_user -->
+
+	<select id="getAllTUser" parameterType="TUser" resultType="TUser">SELECT * FROM t_user
+		<where>
+			<!-- 主键id -->
+			<if test=" id !=null and id !='' ">and id=#{id}</if>
+			<!-- 登录名 -->
+			<if test=" username !=null and username !='' ">and username=#{username}</if>
+			<!-- 真实名字 -->
+			<if test=" realname !=null and realname !='' ">and realname=#{realname}</if>
+			<!-- 登录密码 -->
+			<if test=" password !=null and password !='' ">and password=#{password}</if>
+			<!-- 邮箱地址 -->
+			<if test=" email !=null and email !='' ">and email=#{email}</if>
+			<!-- 电话号码 -->
+			<if test=" tel !=null and tel !='' ">and tel=#{tel}</if>
+			<!-- 用户身份，0是管理员，1是普通用户，2是商家 -->
+			<if test=" gender !=null and gender !='' ">and gender=#{gender}</if>
+			<!-- 用户状态 -->
+			<if test=" status !=null and status !='' ">and status=#{status}</if>
+		</where>
+	</select>
+	<!-- 动态保存t_user -->
+	<insert parameterType="TUser" id="addTUser">INSERT INTO t_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<!-- 主键id -->
+			<if test=" id !=null and id !='' ">id,</if>
+			<!-- 登录名 -->
+			<if test=" username !=null and username !='' ">username,</if>
+			<!-- 真实名字 -->
+			<if test=" realname !=null and realname !='' ">realname,</if>
+			<!-- 登录密码 -->
+			<if test=" password !=null and password !='' ">password,</if>
+			<!-- 邮箱地址 -->
+			<if test=" email !=null and email !='' ">email,</if>
+			<!-- 电话号码 -->
+			<if test=" tel !=null and tel !='' ">tel,</if>
+			<!-- 用户身份，0是管理员，1是普通用户，2是商家 -->
+			<if test=" gender !=null and gender !='' ">gender,</if>
+			<!-- 用户状态 -->
+			<if test=" status !=null and status !='' ">status,</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<!-- 主键id -->
+			<if test=" id !=null and id !='' ">#{id},</if>
+			<!-- 登录名 -->
+			<if test=" username !=null and username !='' ">#{username},</if>
+			<!-- 真实名字 -->
+			<if test=" realname !=null and realname !='' ">#{realname},</if>
+			<!-- 登录密码 -->
+			<if test=" password !=null and password !='' ">#{password},</if>
+			<!-- 邮箱地址 -->
+			<if test=" email !=null and email !='' ">#{email},</if>
+			<!-- 电话号码 -->
+			<if test=" tel !=null and tel !='' ">#{tel},</if>
+			<!-- 用户身份，0是管理员，1是普通用户，2是商家 -->
+			<if test=" gender !=null and gender !='' ">#{gender},</if>
+			<!-- 用户状态 -->
+			<if test=" status !=null and status !='' ">#{status},</if>
+		</trim>
+		<selectKey resultType="int" keyProperty="id" order="AFTER">select LAST_INSERT_ID()</selectKey>
+	</insert>
+
+
+	<!-- 动态更新t_user -->
+	<update id="updateTUser" parameterType="TUser">update t_user set
+		<trim suffixOverrides=",">
+			<!-- 主键id -->
+			<!--<if test=" id !=null and id !='' ">id=#{id},</if>-->
+			<!-- 登录名 -->
+			<if test=" username !=null and username !='' ">username=#{username},</if>
+			<!-- 真实名字 -->
+			<if test=" realname !=null and realname !='' ">realname=#{realname},</if>
+			<!-- 登录密码 -->
+			<if test=" password !=null and password !='' ">password=#{password},</if>
+			<!-- 邮箱地址 -->
+			<if test=" email !=null and email !='' ">email=#{email},</if>
+			<!-- 电话号码 -->
+			<if test=" tel !=null and tel !='' ">tel=#{tel},</if>
+			<!-- 用户身份，0是管理员，1是普通用户，2是商家 -->
+			<if test=" gender !=null and gender !='' ">gender=#{gender},</if>
+			<!-- 用户状态 -->
+			<if test=" status !=null and status !='' ">status=#{status},</if>
+		</trim> WHERE id = #{id}
+	</update>
+</mapper>

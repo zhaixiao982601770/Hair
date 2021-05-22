@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wlxy.hair.dao.TOrderHeadDao">
+	<!-- 动态条件查询t_orderhead -->
+	<select id="getAllTOrderHead" parameterType="TOrderHead" resultType="TOrderHead">SELECT * FROM t_orderhead
+		<where>
+			<!-- 主键 -->
+			<if test=" id !=null and id !='' ">and id=#{id}</if>
+			<!-- 订单用户id -->
+			<if test=" userId !=null and userId !='' ">and userid=#{userId}</if>
+			<!-- 订单总件数 -->
+			<if test=" userName !=null and userName !='' ">and username=#{userName}</if>
+			<!-- 店名 -->
+			<if test=" storeName !=null and storeName !='' ">and storename=#{storeName}</if>
+			<!-- 理发店照片 -->
+			<if test=" storePic !=null and storePic !='' ">and storepic=#{storePic}</if>
+			<!-- 理发店地址 -->
+			<if test=" address !=null and address !='' ">and address=#{address}</if>
+			<!-- 理发类型 -->
+			<if test=" type !=null and type !='' ">and type=#{type}</if>
+			<!-- 理发价格 -->
+			<if test=" price !=null and price !='' ">and price=#{price}</if>
+			<!-- 预约状态 -->
+			<if test=" orderStatus !=null and orderStatus !='' ">and orderstatus=#{orderStatus}</if>
+		</where>
+	</select>
+
+
+
+	<!-- 动态添加t_orderhead -->
+	<insert parameterType="TOrderHead" id="addTOrderHead">INSERT INTO t_orderhead
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<!-- 主键 -->
+			<if test=" id !=null and id !='' ">id,</if>
+			<!-- 订单用户id -->
+			<if test=" userId !=null and userId !='' ">userid,</if>
+			<!-- 订单总件数 -->
+			<if test=" userName !=null and userName !='' ">username,</if>
+			<!-- 店名 -->
+			<if test=" storeName !=null and storeName !='' ">storename,</if>
+			<!-- 理发店照片 -->
+			<if test=" storePic !=null and storePic !='' ">storepic,</if>
+			<!-- 理发店地址 -->
+			<if test=" address !=null and address !='' ">address,</if>
+			<!-- 理发类型 -->
+			<if test=" type !=null and type !='' ">type,</if>
+			<!-- 理发价格 -->
+			<if test=" price !=null and price !='' ">price,</if>
+			<!-- 预约状态 -->
+			<if test=" orderStatus !=null and orderStatus !='' ">orderstatus,</if>
+
+			<if test=" createTime !=null and createTime !='' ">createtime,</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<!-- 主键 -->
+			<if test=" id !=null and id !='' ">#{id},</if>
+			<!-- 订单用户id -->
+			<if test=" userId !=null and userId !='' ">#{userId},</if>
+			<!-- 订单总件数 -->
+			<if test=" userName !=null and userName !='' ">#{userName},</if>
+			<!-- 店名 -->
+			<if test=" storeName !=null and storeName !='' ">#{storeName},</if>
+			<!-- 理发店照片 -->
+			<if test=" storePic !=null and storePic !='' ">#{storePic},</if>
+			<!-- 理发店地址 -->
+			<if test=" address !=null and address !='' ">#{address},</if>
+			<!-- 理发类型 -->
+			<if test=" type !=null and type !='' ">#{type},</if>
+			<!-- 理发价格 -->
+			<if test=" price !=null and price !='' ">#{price},</if>
+			<!-- 预约状态 -->
+			<if test=" orderStatus !=null and orderStatus !='' ">#{orderStatus},</if>
+
+			<!-- 時間 -->
+			<if test=" createTime !=null and createTime !='' ">#{createTime},</if>
+		</trim>
+		<selectKey resultType="int" keyProperty="id" order="AFTER">select LAST_INSERT_ID()</selectKey>
+	</insert>
+
+
+	<!-- 动态更新t_orderhead -->
+	<update id="updateTOrderHead" parameterType="TOrderHead">update t_orderhead set
+		<trim suffixOverrides=",">
+			<!-- 主键 -->
+			<if test=" id !=null and id !='' ">id=#{id},</if>
+			<!-- 订单用户id -->
+			<if test=" userId !=null and userId !='' ">userid=#{userId},</if>
+			<!-- 订单总件数 -->
+			<if test=" userName !=null and userName !='' ">username=#{userName},</if>
+			<!-- 店名 -->
+			<if test=" storeName !=null and storeName !='' ">storename=#{storeName},</if>
+			<!-- 理发店照片 -->
+			<if test=" storePic !=null and storePic !='' ">storepic=#{storePic},</if>
+			<!-- 理发店地址 -->
+			<if test=" address !=null and address !='' ">address=#{address},</if>
+			<!-- 理发类型 -->
+			<if test=" type !=null and type !='' ">type=#{type},</if>
+			<!-- 理发价格 -->
+			<if test=" price !=null and price !='' ">price=#{price},</if>
+			<!-- 预约状态 -->
+			<if test=" orderStatus !=null and orderStatus !='' ">orderstatus=#{orderStatus},</if>
+		</trim> WHERE id = #{id}
+	</update>
+</mapper>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wlxy.hair.dao.THairDao">
+	<!-- 动态条件查询t_hair -->
+	<select id="getAllTHair" parameterType="THair" resultType="THair">SELECT * FROM t_hair
+		<where>
+			<!-- 主键id -->
+			<if test=" id !=null and id !='' ">and id=#{id}</if>
+			<!-- 理发店名字 -->
+			<if test=" storeName !=null and storeName !='' ">and storename=#{storeName}</if>
+			<!-- 照片 -->
+			<if test=" storePic !=null and storePic !='' ">and storepic=#{storePic}</if>
+			<!-- 理发店地址 -->
+			<if test=" address !=null and address !='' ">and address=#{address}</if>
+			<!-- 店铺介绍 -->
+			<if test=" storeDescribe !=null and storeDescribe !='' ">and storedescribe=#{storeDescribe}</if>
+			<!-- 店铺创建人 -->
+			<if test=" userName !=null and userName !='' ">and username=#{userName}</if>
+			<!-- 理发店状态 -->
+			<if test=" storeStatus !=null and storeStatus !='' ">and storestatus=#{storeStatus}</if>
+			<!-- 浏览量 -->
+			<if test=" browse !=null and browse !='' ">and browse=#{browse}</if>
+			<!-- 实际价格 -->
+			<if test=" oldPrice !=null and oldPrice !='' ">and oldprice=#{oldPrice}</if>
+			<!-- 优惠价格 -->
+			<if test=" newPrice !=null and newPrice !='' ">and newprice=#{newPrice}</if>
+			<!-- 理发店电话 -->
+			<if test=" tel !=null and tel !='' ">and tel=#{tel}</if>
+		</where>
+	</select>
+	<!-- 动态添加t_hair -->
+	<insert parameterType="THair" id="addTHair">INSERT INTO t_hair
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<!-- 主键id -->
+			<if test=" id !=null and id !='' ">id,</if>
+			<!-- 理发店名字 -->
+			<if test=" storeName !=null and storeName !='' ">storename,</if>
+			<!-- 照片 -->
+			<if test=" storePic !=null and storePic !='' ">storepic,</if>
+			<!-- 理发店地址 -->
+			<if test=" address !=null and address !='' ">address,</if>
+			<!-- 店铺介绍 -->
+			<if test=" storeDescribe !=null and storeDescribe !='' ">storedescribe,</if>
+			<!-- 店铺创建人 -->
+			<if test=" userName !=null and userName !='' ">username,</if>
+			<!-- 理发店状态 -->
+			<if test=" storeStatus !=null and storeStatus !='' ">storestatus,</if>
+			<!-- 浏览量 -->
+			<if test=" browse !=null and browse !='' ">browse,</if>
+			<!-- 实际价格 -->
+			<if test=" oldPrice !=null and oldPrice !='' ">oldprice,</if>
+			<!-- 优惠价格 -->
+			<if test=" newPrice !=null and newPrice !='' ">newprice,</if>
+			<!-- 理发店电话 -->
+			<if test=" tel !=null and tel !='' ">tel,</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<!-- 主键id -->
+			<if test=" id !=null and id !='' ">#{id},</if>
+			<!-- 理发店名字 -->
+			<if test=" storeName !=null and storeName !='' ">#{storeName},</if>
+			<!-- 照片 -->
+			<if test=" storePic !=null and storePic !='' ">#{storePic},</if>
+			<!-- 理发店地址 -->
+			<if test=" address !=null and address !='' ">#{address},</if>
+			<!-- 店铺介绍 -->
+			<if test=" storeDescribe !=null and storeDescribe !='' ">#{storeDescribe},</if>
+			<!-- 店铺创建人 -->
+			<if test=" userName !=null and userName !='' ">#{userName},</if>
+			<!-- 理发店状态 -->
+			<if test=" storeStatus !=null and storeStatus !='' ">#{storeStatus},</if>
+			<!-- 浏览量 -->
+			<if test=" browse !=null and browse !='' ">#{browse},</if>
+			<!-- 实际价格 -->
+			<if test=" oldPrice !=null and oldPrice !='' ">#{oldPrice},</if>
+			<!-- 优惠价格 -->
+			<if test=" newPrice !=null and newPrice !='' ">#{newPrice},</if>
+			<!-- 理发店电话 -->
+			<if test=" tel !=null and tel !='' ">#{tel},</if>
+		</trim>
+		<selectKey resultType="int" keyProperty="id" order="AFTER">select LAST_INSERT_ID()</selectKey>
+	</insert>
+	<!-- 动态更新t_hair -->
+	<update id="updateTHair" parameterType="THair">update t_Hair set
+		<trim suffixOverrides=",">
+			<!-- 理发店名字 -->
+			<if test=" storeName !=null and storeName !='' ">storename=#{storeName},</if>
+			<!-- 照片 -->
+			<if test=" storePic !=null and storePic !='' ">storepic=#{storePic},</if>
+			<!-- 理发店地址 -->
+			<if test=" address !=null and address !='' ">address=#{address},</if>
+			<!-- 店铺介绍 -->
+			<if test=" storeDescribe !=null and storeDescribe !='' ">storedescribe=#{storeDescribe},</if>
+			<!-- 店铺创建人 -->
+			<if test=" userName !=null and userName !='' ">username=#{userName},</if>
+			<!-- 理发店状态 -->
+			<if test=" storeStatus !=null and storeStatus !='' ">storestatus=#{storeStatus},</if>
+			<!-- 浏览量 -->
+			<if test=" browse !=null and browse !='' ">browse=#{browse},</if>
+			<!-- 实际价格 -->
+			<if test=" oldPrice !=null and oldPrice !='' ">oldprice=#{oldPrice},</if>
+			<!-- 优惠价格 -->
+			<if test=" newPrice !=null and newPrice !='' ">newprice=#{newPrice},</if>
+			<!-- 理发店电话 -->
+
+			<if test=" tel !=null and tel !='' ">tel=#{tel},</if>
+		</trim> WHERE id = #{id}
+	</update>
+</mapper>
